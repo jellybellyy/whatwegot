@@ -51,6 +51,7 @@ function Nav() {
                     {loggedIn ? null : <Link style={navStyle} to="/signup">
                         <li>Sign Up</li>
                     </Link>}
+                    {loggedIn ? <Link style={navStyle} to="/list">List</Link> : null}
                 </ul>
                 {loggedIn ? <Logout /> : null}
             </nav>

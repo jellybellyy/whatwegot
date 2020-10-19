@@ -16,4 +16,5 @@ module.exports = (app, allModels) => {
     app.get("/item/:id", itemsControllerCallbacks.itemDetails);
     app.put("/item/edit", itemsControllerCallbacks.editItem);
     app.delete("/item/delete/:id", itemsControllerCallbacks.deleteItem);
+    app.get("/searchresults/:query", itemsControllerCallbacks.searchResults);
 };

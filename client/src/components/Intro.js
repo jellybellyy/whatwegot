@@ -14,7 +14,7 @@ function Intro() {
         if (Cookies.get('logged_in')) {
             setLoggedIn(true);
             console.log(loggedIn);
-            window.location = "/home";
+            window.location = "/list";
         } else {
             setLoggedIn(false);
         }

@@ -81,12 +81,29 @@ module.exports = (db) => {
         })
     }
 
+    const searchResults = (req, res) => {
+
+        console.log("searchResults controller triggered");
+
+        let searchQuery = req.params.query;
+
+        db.items.getSearchResults(searchQuery, (err, result) => {
+            if (err) {
+                console.log("error at items model, searchResults ===", err.message);
+            }
+            else {
+                res.send(result.rows);
+            }
+        })
+    }
+
     return {
         allItems,
         addItem,
         itemDetails,
         editItem,
-        deleteItem
+        deleteItem,
+        searchResults
     }
 
 }

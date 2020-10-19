@@ -53,6 +53,10 @@ function EditItem({ match, history }) {
         }
     }
 
+    const cancelHandler = () => {
+        history.push("/list");
+    }
+
     ////////////////////////////// EDIT FORM  ////////////////////////////////
 
     return (
@@ -74,6 +78,7 @@ function EditItem({ match, history }) {
                 Description: <input type='text' value={description} onChange={descriptionHandler} />
                 <br />
                 <input type='submit' value="Edit" />
+                <input type='submit' value="Cancel" onClick={cancelHandler} />
             </form>
         </div>
     )

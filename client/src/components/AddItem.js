@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie'
-import moment from 'moment';
 
 function AddItem(props) {
 

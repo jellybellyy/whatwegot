@@ -1,29 +1,27 @@
-// Packages
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-function Items() {
+function SearchResults({ query, backHandler }) {
 
     //////////////////////////////// HOOKS ///////////////////////////////////
 
-    const [userId] = useState(Cookies.get('user_id'));
-    const [allItems, setAllItems] = useState([]);
+    const [results, setResults] = useState([]);
 
     ////////////////////////  COMPONENT DID MOUNT ////////////////////////////
 
     useEffect(() => {
-        getAllItems();
-    }, []);
+        getResults();
+    }, [query]);
 
     ////////////////////////////// FUNCTIONS /////////////////////////////////
 
-    const getAllItems = async () => {
-        const id = userId;
-        const results = await fetch(`/items/${id}`)
-        const items = await results.json();
-        setAllItems(items);
+    const getResults = async () => {
+        let searchQuery = query;
+        const results = await fetch(`/searchresults/${searchQuery}`);
+        const searchResults = await results.json();
+        console.log(searchResults);
+        setResults(searchResults);
     }
 
     const deleteHandler = async (e) => {
@@ -39,7 +37,7 @@ function Items() {
         }
     }
 
-    let items = allItems.map((item, index) => {
+    let searchResults = results.map((item, index) => {
 
         let today = moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD');
         let expiryDate = moment(`${item.expiry_date}`, 'YYYY-MM-DD');
@@ -73,15 +71,15 @@ function Items() {
                 </div>
             )
         }
-
     })
 
     return (
         <div>
-            <div>Name | Quantity | Purchase Date | Expiry Date | Description | Days Till Expiry</div>
-            {items}
+            { searchResults}
+            <button onClick={backHandler}>Back</button>
         </div>
     )
+
 }
 
-export default Items
+export default SearchResults
