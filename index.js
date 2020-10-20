@@ -19,16 +19,18 @@ if (process.env.NODE_ENV === "production") {
     //server static content
     //npm run build
     app.use(express.static(path.join(__dirname, "client/build")));
-
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "client/build/index.html"));
-    });
 }
 
 
 const allModels = require('./db');
 const setRoutesFunction = require('./routes');
 setRoutesFunction(app, allModels);
+
+
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
 const server = app.listen(PORT, () => {
     console.log(`server has started on port ${PORT}`)
