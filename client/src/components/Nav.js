@@ -39,14 +39,12 @@ function Nav() {
     return (
         <div>
             <nav>
-                {/* {loggedIn ?
-                    <Link style={navStyle} to="/home">
-                        <h3>Logo</h3>
-                    </Link> :
+                {loggedIn ?
+                    <h3>WhatWeGot</h3> :
                     <Link style={navStyle} to="/">
-                        <h3>Logo</h3>
-                    </Link>} */}
-                <h3>WhatWeGot</h3>
+                        <h3>WhatWeGot</h3>
+                    </Link>}
+                {/* <h3>WhatWeGot</h3> */}
                 <ul className="nav-links">
                     {loggedIn ? null : <Link style={navStyle} to="/login">
                         <li>Log In</li>

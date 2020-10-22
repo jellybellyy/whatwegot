@@ -51,14 +51,21 @@ function Signup(props) {
 
     return (
         <div>
+            <br />
             <form onSubmit={submitHandler}>
-                First Name: <input type='text' value={firstName} required onChange={firstNameHandler} />
+                <h4>First Name</h4>
+                <input type='text' value={firstName} required onChange={firstNameHandler} />
+                <br /><br />
+                <h4>Last Name</h4>
+                <input type='text' value={lastName} required onChange={lastNameHandler} />
+                <br /><br />
+                <h4>Username</h4>
+                <input type='text' value={username} minLength="6" required onChange={usernameHandler} />
+                <div className="assist">username must be at least 6 characters long*</div>
                 <br />
-                Last Name: <input type='text' value={lastName} required onChange={lastNameHandler} />
-                <br />
-                Username: <input type='text' value={username} minLength="6" required onChange={usernameHandler} />
-                <br />
-                Password: <input type='password' value={password} minLength="8" required onChange={passwordHandler} />
+                <h4>Password</h4>
+                <input type='password' value={password} minLength="8" required onChange={passwordHandler} />
+                <div className="assist">password must be at least 8 characters long*</div>
                 <br />
                 <input type="submit" value="Sign Up" />
             </form>

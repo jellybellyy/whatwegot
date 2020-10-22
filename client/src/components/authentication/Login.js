@@ -45,11 +45,12 @@ function Login(props) {
 
     return (
         <div>
+            <br /><br />
             <form onSubmit={submitHandler}>
                 Username: <input type="text" value={username} name="username" required onChange={usernameHandler} />
-                <br />
+                <br /><br />
                 Password: <input type="password" value={password} name="password" required onChange={passwordHandler} />
-                <br />
+                <br /><br />
                 <input type="submit" value="Log In" />
             </form>
             { errorMessage ? <h5>{errorMessage}</h5> : null}
