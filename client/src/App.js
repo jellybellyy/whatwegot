@@ -12,6 +12,7 @@ import Nav from './components/Nav'
 // Authentication Components
 import Intro from './components/Intro';
 import Signup from './components/Authentication/signup';
+import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
 
 // Item Components
