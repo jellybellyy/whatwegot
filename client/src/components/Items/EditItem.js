@@ -25,6 +25,11 @@ function EditItem({ match, history }) {
         const results = await fetch(`/item/${id}`);
         const item = await results.json();
         setItemDetails(item);
+        setName(item.name);
+        setQuantity(item.quantity);
+        setPurchaseDate(item.purchase_date);
+        setExpiryDate(item.expiry_date);
+        setDescription(item.description);
     }
 
     // on change handlers
@@ -47,24 +52,20 @@ function EditItem({ match, history }) {
                 body: JSON.stringify(body)
             });
             console.log(response);
-            history.push("/list");
+            history.push("/items");
         } catch (err) {
             console.log("error at EditItem submitHandler ===", err.message);
         }
     }
 
     const cancelHandler = () => {
-        history.push("/list");
+        history.push("/items");
     }
 
     ////////////////////////////// EDIT FORM  ////////////////////////////////
 
     return (
         <div>
-            <br /><br />
-            <div>
-                {itemDetails.name} | {itemDetails.quantity} | {itemDetails.purchase_date} | {itemDetails.expiry_date} | {itemDetails.description}
-            </div>
             <br /><br />
             <form onSubmit={submitHandler}>
                 Name: <input type='text' value={name} required onChange={nameHandler} />

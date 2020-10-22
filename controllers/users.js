@@ -12,7 +12,7 @@ module.exports = (db) => {
 
         db.users.getSignup(firstName, lastName, username, password, (err, result) => {
             if (err) {
-                console.log("error at users controller, signup ===", err.message);
+                console.log("Error at users controller, signup ===", err.message);
             }
             else {
                 if (typeof (result) === "string") {
@@ -40,7 +40,7 @@ module.exports = (db) => {
 
         db.users.getLogin(username, password, (err, result) => {
             if (err) {
-                console.log("error at user controller, login ===", err.message);
+                console.log("Error at user controller, login ===", err.message);
             }
             else {
                 if (typeof (result) === "string") {

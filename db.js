@@ -37,9 +37,11 @@ pool.on('error', function (err) {
 
 const allUsersModelsFunction = require("./models/users");
 const allItemsModelsFunction = require("./models/items");
+const allRecipesModelsFunction = require("./models/recipes");
 
 const usersModelsObject = allUsersModelsFunction(pool);
 const itemsModelsObject = allItemsModelsFunction(pool);
+const recipesModelsObject = allRecipesModelsFunction(pool);
 
 
 module.exports = {
@@ -52,7 +54,8 @@ module.exports = {
     pool: pool,
 
     users: usersModelsObject,
-    items: itemsModelsObject
+    items: itemsModelsObject,
+    recipes: recipesModelsObject
 
 };
 

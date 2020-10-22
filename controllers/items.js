@@ -8,7 +8,7 @@ module.exports = (db) => {
 
         db.items.getAllItems(userId, (err, result) => {
             if (err) {
-                console.log("error at items controller, allItems ===", err.message);
+                console.log("Error at items controller, allItems ===", err.message);
             }
             else {
                 res.send(result.rows);
@@ -25,7 +25,7 @@ module.exports = (db) => {
 
         db.items.getAddItem(name, quantity, purchaseDate, expiryDate, description, userId, (err, result) => {
             if (err) {
-                console.log("error at items controller, addItem ===", err.message);
+                console.log("Error at items controller, addItem ===", err.message);
             }
             else {
                 res.send(result.rows);
@@ -41,7 +41,7 @@ module.exports = (db) => {
 
         db.items.getItemDetails(itemId, (err, result) => {
             if (err) {
-                console.log("error at items controller, itemDetails ===", err.message);
+                console.log("Error at items controller, itemDetails ===", err.message);
             }
             else {
                 res.send(result.rows[0]);
@@ -57,7 +57,7 @@ module.exports = (db) => {
 
         db.items.getEditItem(name, quantity, purchaseDate, expiryDate, description, itemId, (err, result) => {
             if (err) {
-                console.log("error at items controller, editItem ===", err.message);
+                console.log("Error at items controller, editItem ===", err.message);
             }
             else {
                 res.send(result.rows);
@@ -73,7 +73,7 @@ module.exports = (db) => {
 
         db.items.getDeleteItem(itemId, (err, result) => {
             if (err) {
-                console.log("error at items controller, deleteItem ===", err.message);
+                console.log("Error at items controller, deleteItem ===", err.message);
             }
             else {
                 res.send("Item deleted!");
@@ -85,11 +85,12 @@ module.exports = (db) => {
 
         console.log("searchResults controller triggered");
 
+        let userId = req.params.id;
         let searchQuery = req.params.query;
 
-        db.items.getSearchResults(searchQuery, (err, result) => {
+        db.items.getSearchResults(userId, searchQuery, (err, result) => {
             if (err) {
-                console.log("error at items model, searchResults ===", err.message);
+                console.log("Error at items model, searchResults ===", err.message);
             }
             else {
                 res.send(result.rows);

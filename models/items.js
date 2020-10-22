@@ -2,11 +2,11 @@ module.exports = (dbPoolInstance) => {
 
     const getAllItems = (userId, callback) => {
 
-        let query = `SELECT * FROM items WHERE user_id = '${userId}' ORDER BY purchase_date DESC `
+        let query = `SELECT * FROM items WHERE user_id = '${userId}' ORDER BY expiry_date ASC `
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
-                console.log("error at items model, getAllItems ===", err.message);
+                console.log("Error at items model, getAllItems ===", err.message);
                 callback(null, null);
             }
             else {
@@ -17,11 +17,11 @@ module.exports = (dbPoolInstance) => {
 
     const getAddItem = (name, quantity, purchaseDate, expiryDate, description, userId, callback) => {
 
-        let query = `INSERT INTO items (name, quantity, purchase_date, expiry_date, description, user_id) VALUES ($$${name}$$, $$${quantity}$$, '${purchaseDate}', '${expiryDate}', $$${description}$$, '${userId}')`
+        let query = `INSERT INTO items (name, quantity, purchase_date, expiry_date, description, user_id) VALUES (INITCAP($$${name}$$), INITCAP($$${quantity}$$), '${purchaseDate}', '${expiryDate}', $$${description}$$, '${userId}')`
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
-                console.log("error at items model, getAddItem ===", err.message);
+                console.log("Error at items model, getAddItem ===", err.message);
                 callback(null, null);
             }
             else {
@@ -36,7 +36,7 @@ module.exports = (dbPoolInstance) => {
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
-                console.log("error at items model, getItemDetails ===", err.message);
+                console.log("Error at items model, getItemDetails ===", err.message);
                 callback(null, null);
             }
             else {
@@ -47,11 +47,11 @@ module.exports = (dbPoolInstance) => {
 
     const getEditItem = (name, quantity, purchaseDate, expiryDate, description, itemId, callback) => {
 
-        let query = `UPDATE items SET name = $$${name}$$, quantity = $$${quantity}$$, purchase_date = '${purchaseDate}', expiry_date = '${expiryDate}', description = $$${description}$$ WHERE id = '${itemId}'`
+        let query = `UPDATE items SET name = INITCAP($$${name}$$), quantity = INITCAP($$${quantity}$$), purchase_date = '${purchaseDate}', expiry_date = '${expiryDate}', description = $$${description}$$ WHERE id = '${itemId}'`
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
-                console.log("error at items model, getEditItem ===", err.message);
+                console.log("Error at items model, getEditItem ===", err.message);
                 callback(null, null);
             }
             else {
@@ -66,7 +66,7 @@ module.exports = (dbPoolInstance) => {
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
-                console.log("error at items model, getDeleteItem ===", err.message);
+                console.log("Error at items model, getDeleteItem ===", err.message);
                 callback(null, null);
             }
             else {
@@ -75,13 +75,13 @@ module.exports = (dbPoolInstance) => {
         })
     }
 
-    const getSearchResults = (searchQuery, callback) => {
+    const getSearchResults = (userId, searchQuery, callback) => {
 
-        let query = `SELECT * FROM items WHERE lower(name) LIKE lower($$%${searchQuery}%$$)`
+        let query = `SELECT * FROM items WHERE lower(name) LIKE lower($$%${searchQuery}%$$) AND user_id = '${userId}'`
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
-                console.log("error at items model, getSearchResults ===", err.message);
+                console.log("Error at items model, getSearchResults ===", err.message);
                 callback(null, null);
             }
             else {

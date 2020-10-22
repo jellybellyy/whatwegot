@@ -8,12 +8,26 @@ import './App.css';
 
 // Components
 import Nav from './components/Nav'
+
+// Authentication Components
 import Intro from './components/Intro';
-import Signup from './components/authentication/Signup';
-import Login from './components/authentication/Login';
-import List from './components/List';
-import AddItem from './components/AddItem';
-import EditItem from './components/EditItem';
+import Signup from './components/Authentication/Signup';
+import Login from './components/Authentication/Login';
+
+// Item Components
+import Items from './components/Items/Items';
+import AddItem from './components/Items/AddItem';
+import EditItem from './components/Items/EditItem';
+
+// Recipe Components
+import Recipes from './components/Recipes/Recipes';
+import AddRecipe from './components/Recipes/AddRecipe';
+import AddRecipeDetails from './components/Recipes/AddRecipeDetails';
+import RecipeDetails from './components/Recipes/RecipeDetails';
+import EditRecipe from './components/Recipes/EditRecipe';
+import EditRecipeIngredient from './components/Recipes/EditRecipeIngredient';
+import EditRecipeIngredients from './components/Recipes/EditRecipeIngredients';
+import EditRecipeInstructions from './components/Recipes/EditRecipeInstructions';
 
 function App() {
 
@@ -46,10 +60,19 @@ function App() {
           {loggedIn ? null : <Route path="/" exact component={Intro} />}
           {loggedIn ? null : <Route path="/signup" component={Signup} />}
           {loggedIn ? null : <Route path="/login" component={Login} />}
-          {/* {loggedIn ? <Route path="/home" component={Home} /> : null} */}
-          <Route path="/list" exact component={List} />
-          <Route path="/list/add" component={AddItem} />
-          <Route path="/list/edit/:id" component={EditItem} />
+
+          <Route path="/items" exact component={Items} />
+          <Route path="/item/add" component={AddItem} />
+          <Route path="/item/edit/:id" component={EditItem} />
+
+          <Route path="/recipes" exact component={Recipes} />
+          <Route path="/recipe/add" exact component={AddRecipe} />
+          <Route path="/recipe/add/:id" component={AddRecipeDetails} />
+          <Route path="/recipe/edit/ingredient/:id" component={EditRecipeIngredient} />
+          <Route path="/recipe/edit/ingredients/:id" component={EditRecipeIngredients} />
+          <Route path="/recipe/edit/instructions/:id" component={EditRecipeInstructions} />
+          <Route path="/recipe/edit/:id" component={EditRecipe} />
+          <Route path="/recipe/:id" component={RecipeDetails} />
         </Switch>
       </div>
     </Router>

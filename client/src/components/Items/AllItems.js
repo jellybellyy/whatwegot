@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-function Items() {
+function AllItems() {
 
     //////////////////////////////// HOOKS ///////////////////////////////////
 
@@ -33,9 +33,9 @@ function Items() {
                 method: "DELETE"
             });
             console.log(response);
-            window.location = "/list";
+            window.location = "/items";
         } catch (err) {
-            console.log("error at Items deleteHander ===", err.message);
+            console.log("error at Items deleteHandler ===", err.message);
         }
     }
 
@@ -48,28 +48,28 @@ function Items() {
         if (difference > 3) {
             return (
                 <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | {difference} <Link to={`/list/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
+                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | {difference} <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
                 </div>
             )
         }
         else if (difference > 0 && difference < 4) {
             return (
                 <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring soon! <Link to={`/list/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
+                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring soon! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
                 </div>
             )
         }
         else if (difference === 0) {
             return (
                 <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring today! <Link to={`/list/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
+                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring today! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
                 </div>
             )
         }
         else {
             return (
                 <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expired! <Link to={`/list/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
+                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expired! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
                 </div>
             )
         }
@@ -78,10 +78,10 @@ function Items() {
 
     return (
         <div>
-            <div>Name | Quantity | Purchase Date | Expiry Date | Description | Days Till Expiry</div>
+            <h3>Name | Quantity | Purchase Date | Expiry Date | Description | Days Till Expiry</h3>
             {items}
         </div>
     )
 }
 
-export default Items
+export default AllItems

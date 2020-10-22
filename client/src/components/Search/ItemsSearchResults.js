@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-function SearchResults({ query, backHandler }) {
+function ItemsSearchResults({ query, backHandler }) {
 
     //////////////////////////////// HOOKS ///////////////////////////////////
 
     const [results, setResults] = useState([]);
+    const [userId] = useState(Cookies.get('user_id'));
 
     ////////////////////////  COMPONENT DID MOUNT ////////////////////////////
 
@@ -17,8 +19,9 @@ function SearchResults({ query, backHandler }) {
     ////////////////////////////// FUNCTIONS /////////////////////////////////
 
     const getResults = async () => {
+        let id = userId
         let searchQuery = query;
-        const results = await fetch(`/searchresults/${searchQuery}`);
+        const results = await fetch(`/itemssearchresults/${id}/${searchQuery}`);
         const searchResults = await results.json();
         console.log(searchResults);
         setResults(searchResults);
@@ -31,7 +34,7 @@ function SearchResults({ query, backHandler }) {
                 method: "DELETE"
             });
             console.log(response);
-            window.location = "/list";
+            window.location = "/items";
         } catch (err) {
             console.log("error at Items deleteHander ===", err.message);
         }
@@ -46,28 +49,28 @@ function SearchResults({ query, backHandler }) {
         if (difference > 3) {
             return (
                 <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | {difference} <Link to={`/list/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
+                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | {difference} <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
                 </div>
             )
         }
         else if (difference > 0 && difference < 4) {
             return (
                 <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring soon! <Link to={`/list/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
+                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring soon! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
                 </div>
             )
         }
         else if (difference === 0) {
             return (
                 <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring today! <Link to={`/list/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
+                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring today! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
                 </div>
             )
         }
         else {
             return (
                 <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expired! <Link to={`/list/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
+                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expired! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
                 </div>
             )
         }
@@ -75,11 +78,11 @@ function SearchResults({ query, backHandler }) {
 
     return (
         <div>
-            { searchResults}
+            {searchResults}
             <button onClick={backHandler}>Back</button>
         </div>
     )
 
 }
 
-export default SearchResults
+export default ItemsSearchResults

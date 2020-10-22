@@ -34,7 +34,7 @@ function Login(props) {
                 setPassword("");
             } else {
                 // props.history.push("/home");
-                window.location = "/list";
+                window.location = "/items";
             }
         } catch (err) {
             console.log("error at Login submitHandler ===", err.message);

@@ -40,7 +40,7 @@ function Signup(props) {
                 setPassword("");
             } else {
                 // props.history.push("/home");
-                window.location = "/list";
+                window.location = "/items";
             }
         } catch (err) {
             console.log("error at Signup submitHandler ===", err.message);

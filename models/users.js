@@ -3,11 +3,11 @@ module.exports = (dbPoolInstance) => {
     const getSignup = (firstName, lastName, username, password, callback) => {
 
         // prevents multiple entries with the same username
-        let query = `INSERT INTO users (first_name, last_name, username, password) SELECT '${firstName}', '${lastName}', '${username}', '${password}' WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = '${username}') RETURNING *`
+        let query = `INSERT INTO users (first_name, last_name, username, password) SELECT INITCAP($$${firstName}$$), INITCAP($$${lastName}$$), '${username}', '${password}' WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = '${username}') RETURNING *`
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
-                console.log("error at users model, getSignup ===", err.message);
+                console.log("Error at users model, getSignup ===", err.message);
                 callback(null, null);
             }
             else {
@@ -25,7 +25,7 @@ module.exports = (dbPoolInstance) => {
 
         dbPoolInstance.query(query, (err, result) => {
             if (err) {
-                console.log("error at user model, getLogin ===", err.message);
+                console.log("Error at user model, getLogin ===", err.message);
                 callback(null, null);
             }
             else {

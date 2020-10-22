@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 function AddItem(props) {
 
@@ -28,15 +28,15 @@ function AddItem(props) {
         e.preventDefault();
         try {
             const body = { name, quantity, purchaseDate, expiryDate, description, userId }
-            const response = await fetch("/items/add", {
+            const response = await fetch("/item/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
             console.log(response);
-            props.history.push("/list")
+            props.history.push("/items")
         } catch (err) {
-            console.log("error at AddItem submitHandler ===", err.message);
+            console.log("Error at AddItem submitHandler ===", err.message);
         }
     }
 
@@ -59,7 +59,6 @@ function AddItem(props) {
             </form>
         </div>
     )
-
 }
 
 export default AddItem

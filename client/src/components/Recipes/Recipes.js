@@ -1,14 +1,14 @@
-// Packages
+//Packages
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
 // Components
-import Items from './Items';
-import Search from './Search';
-import SearchResults from './SearchResults';
+import AllRecipes from './AllRecipes';
+import Search from '../Search/Search';
+import RecipesSearchResults from '../Search/RecipesSearchResults';
 
-function List() {
+function Recipes() {
 
     //////////////////////////////// HOOKS ///////////////////////////////////
 
@@ -53,17 +53,16 @@ function List() {
 
     return (
         <div>
-            {loggedIn ? null : <h1>You do not have access to this page. Please log in or sign up for an account!</h1>}
-            {hasSearched ? <h1>Search Results</h1> : <h1>Your Items</h1>}
+            {hasSearched ? <h1>Search Results</h1> : <h1>Your Recipes</h1>}
             {loggedIn ? <Search inputHandler={inputHandler} submitHandler={submitHandler} input={input} /> : null}
             <br />
-            {loggedIn && !hasSearched ? <Items /> : null}
-            <br />
-            {loggedIn && !hasSearched ? <Link to="/list/add"><button>Add Item</button></Link> : null}
+            {loggedIn && !hasSearched ? <AllRecipes /> : null}
+            <br /><br />
+            {loggedIn && !hasSearched ? <Link to="/recipe/add"><button>Add Recipe</button></Link> : null}
 
-            {loggedIn && hasSearched ? <SearchResults query={query} backHandler={backHandler} /> : null}
+            {loggedIn && hasSearched ? <RecipesSearchResults query={query} backHandler={backHandler} /> : null}
         </div>
     )
 }
 
-export default List
+export default Recipes
