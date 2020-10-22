@@ -48,37 +48,82 @@ function ItemsSearchResults({ query, backHandler }) {
 
         if (difference > 3) {
             return (
-                <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | {difference} <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
-                </div>
+                <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.purchase_date}</td>
+                    <td>{item.expiry_date}</td>
+                    <td>{item.description}</td>
+                    <td>{difference}</td>
+                    <td><Link to={`/item/edit/${item.id}`}><button>Edit</button></Link></td>
+                    <td><input type='submit' value="X" id={item.id} onClick={deleteHandler} /></td>
+                </tr>
             )
         }
         else if (difference > 0 && difference < 4) {
             return (
-                <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring soon! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
-                </div>
+                <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.purchase_date}</td>
+                    <td>{item.expiry_date}</td>
+                    <td>{item.description}</td>
+                    <td>expiring soon</td>
+                    <td><Link to={`/item/edit/${item.id}`}><button>Edit</button></Link></td>
+                    <td><input type='submit' value="X" id={item.id} onClick={deleteHandler} /></td>
+                </tr>
             )
         }
         else if (difference === 0) {
             return (
-                <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expiring today! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
-                </div>
+                <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.purchase_date}</td>
+                    <td>{item.expiry_date}</td>
+                    <td>{item.description}</td>
+                    <td>expiring today</td>
+                    <td><Link to={`/item/edit/${item.id}`}><button>Edit</button></Link></td>
+                    <td><input type='submit' value="X" id={item.id} onClick={deleteHandler} /></td>
+                </tr>
             )
         }
         else {
             return (
-                <div key={index}>
-                    {item.name} | {item.quantity} | {item.purchase_date} | {item.expiry_date} | {item.description} | expired! <Link to={`/item/edit/${item.id}`}><button>Edit</button></Link><input type='submit' value="X" id={item.id} onClick={deleteHandler} />
-                </div>
+                <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.purchase_date}</td>
+                    <td>{item.expiry_date}</td>
+                    <td>{item.description}</td>
+                    <td>expired</td>
+                    <td><Link to={`/item/edit/${item.id}`}><button>Edit</button></Link></td>
+                    <td><input type='submit' value="X" id={item.id} onClick={deleteHandler} /></td>
+                </tr>
             )
         }
+
     })
 
     return (
         <div>
-            {searchResults}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Purchase Date</th>
+                        <th scope="col">Expiry Date</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Days Till Expiry</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {searchResults}
+                </tbody>
+            </table>
             <button onClick={backHandler}>Back</button>
         </div>
     )

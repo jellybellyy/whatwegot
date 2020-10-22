@@ -51,24 +51,28 @@ function RecipeDetails({ match, history }) {
     })
 
     return (
-        <div>
-            <h1>{recipeName}</h1>
-            <h2>Description</h2>
-            {recipeDescription}
-            <br /><br />
-            <Link to={`/recipe/edit/${recipeId}`}><button>Edit</button></Link>
-            <br /><br />
-            <h2>Ingredients</h2>
-            {ingredients}
-            <br />
-            <Link to={`/recipe/edit/ingredients/${recipeId}`}><button>Edit</button></Link>
-            <br /><br />
-            <h2>Instructions</h2>
-            {recipeInstructions}
-            <br /><br />
-            <Link to={`/recipe/edit/instructions/${recipeId}`}><button>Edit</button></Link>
-            <br /><br /><br /><br />
-            <button onClick={deleteHandler}>Delete Recipe</button>
+        <div className="container">
+            <div className="row">
+                <div className="col=sm">
+                    <h1>{recipeName}</h1>
+                    <h2>Description</h2>
+                    {recipeDescription}
+                    <br /><br />
+                    <Link to={`/recipe/edit/${recipeId}`}><button>Edit</button></Link>
+                    <br /><br />
+                    <h2>Ingredients</h2>
+                    {ingredients}
+                    <br />
+                    <Link to={`/recipe/edit/ingredients/${recipeId}`}><button>Edit</button></Link>
+                    <br /><br />
+                    <h2>Instructions</h2>
+                    {recipeInstructions}
+                    <br /><br />
+                    <Link to={`/recipe/edit/instructions/${recipeId}`}><button>Edit</button></Link>
+                    <br /><br /><br /><br />
+                    <button onClick={deleteHandler}>Delete Recipe</button>
+                </div>
+            </div>
         </div>
     )
 }

@@ -34,18 +34,29 @@ function AllRecipes() {
 
     let recipes = allRecipes.map((item, index) => {
         return (
-            <div key={index}>
-                <Link style={linkStyle} to={`/recipe/${item.id}`}><h2>{item.name}</h2></Link>
-                <br />
-                {item.description}
-                <br /><br />
-            </div>
+            <tr key={index}>
+                <td><Link style={linkStyle} to={`/recipe/${item.id}`}><h5>{item.name}</h5></Link></td>
+                <td>{item.description}</td>
+            </tr>
         )
     })
 
     return (
+        // <div>
+        //     {recipes}
+        // </div>
         <div>
-            {recipes}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {recipes}
+                </tbody>
+            </table>
         </div>
     )
 }

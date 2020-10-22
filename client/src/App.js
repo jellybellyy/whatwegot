@@ -1,7 +1,7 @@
 // Packages
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 // CSS
 import './App.css';
