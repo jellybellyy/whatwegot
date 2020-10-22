@@ -6,6 +6,7 @@ nav {
   display: flex;
   justify-content: space-around;
   min-height: 10vh;
+  align-items: center;
   background: lightgoldenrodyellow;
 }
 
