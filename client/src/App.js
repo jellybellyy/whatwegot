@@ -9,7 +9,7 @@ import './App.css';
 // Components
 import Nav from './components/Nav'
 
-// Authentication Component
+// Authentication Components
 import Intro from './components/Intro';
 import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
