@@ -11,7 +11,7 @@ import Nav from './components/Nav'
 
 // Authentication Components
 import Intro from './components/Intro';
-import Signup from './components/Authentication/Signup';
+import signup from './components/Authentication/signup';
 import Login from './components/Authentication/Login';
 
 // Item Components
@@ -58,7 +58,7 @@ function App() {
         <Nav />
         <Switch>
           {loggedIn ? null : <Route path="/" exact component={Intro} />}
-          {loggedIn ? null : <Route path="/signup" component={Signup} />}
+          {loggedIn ? null : <Route path="/signup" component={signup} />}
           {loggedIn ? null : <Route path="/login" component={Login} />}
 
           <Route path="/items" exact component={Items} />
