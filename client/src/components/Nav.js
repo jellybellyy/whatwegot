@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 // Components
-import Logout from './Authentication/Logout';
+import Logout from './authentication/Logout';
 
 function Nav() {
 

@@ -11,8 +11,8 @@ import Nav from './components/Nav'
 
 // Authentication Components
 import Intro from './components/Intro';
-// import Register from './components/Authentication/Register';
-// import Login from './components/Authentication/Login';
+import Signup from './components/authentication/Signup';
+import Login from './components/authentication/Login';
 
 // Item Components
 import Items from './components/Items/Items';
@@ -58,8 +58,8 @@ function App() {
         <Nav />
         <Switch>
           {loggedIn ? null : <Route path="/" exact component={Intro} />}
-          {/* {loggedIn ? null : <Route path="/signup" component={Register} />}
-          {loggedIn ? null : <Route path="/login" component={Login} />} */}
+          {loggedIn ? null : <Route path="/signup" component={Signup} />}
+          {loggedIn ? null : <Route path="/login" component={Login} />}
 
           <Route path="/items" exact component={Items} />
           <Route path="/item/add" component={AddItem} />
