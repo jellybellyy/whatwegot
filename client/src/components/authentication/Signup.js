@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function signup(props) {
+function Signup(props) {
 
     //////////////////////////////// HOOKS ///////////////////////////////////
 
@@ -67,4 +67,4 @@ function signup(props) {
     )
 }
 
-export default signup
+export default Signup
