@@ -10,7 +10,7 @@ With that said, it is so important to ensure we don’t waste food when we have 
 
 ## URL 
 
-http:// whatwegot.herokuapp.com
+<a href="http://whatwegot.herokuapp.com">http:// whatwegot.herokuapp.com</a>
 
 ## Technologies Used
 
